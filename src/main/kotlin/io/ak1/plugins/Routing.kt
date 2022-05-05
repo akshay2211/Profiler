@@ -20,13 +20,13 @@ fun Application.configureRouting() {
 }
 
 fun Route.bannerCreation() {
-    get("/banner") {
+    get {
         val title = call.request.queryParameters["title"] ?: return@get call.badRequest("Missing title")
         val desc1 = call.request.queryParameters["desc1"]
         val desc2 = call.request.queryParameters["desc2"]
 
 
-        val image = call.request.queryParameters["image"] ?: "https://avatars.githubusercontent.com/u/6002062?v=4"
+        val image = call.request.queryParameters["image"]
         val url = call.request.queryParameters["url"]
 
         val icons = call.request.getHashMap()
