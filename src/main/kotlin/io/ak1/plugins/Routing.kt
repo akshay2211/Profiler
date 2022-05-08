@@ -13,9 +13,6 @@ fun Application.configureRouting() {
     // Starting point for a Ktor app:
     routing {
         bannerCreation()
-        get("/") {
-            call.respondText("Nothing here!!")
-        }
     }
 }
 
