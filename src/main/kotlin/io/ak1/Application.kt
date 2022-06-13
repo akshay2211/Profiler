@@ -1,6 +1,7 @@
 package io.ak1
 
 import io.ak1.plugins.configureRouting
+import io.ak1.plugins.installCors
 import io.ktor.server.application.*
 
 fun main(args: Array<String>): Unit =
@@ -8,5 +9,6 @@ fun main(args: Array<String>): Unit =
 
 @Suppress("unused") // application.conf references the main function. This annotation prevents the IDE from marking it as unused.
 fun Application.module() {
+    installCors()
     configureRouting()
 }

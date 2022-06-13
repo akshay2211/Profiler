@@ -5,6 +5,7 @@ import io.ak1.svg.generate
 import io.ak1.svg.getHashMap
 import io.ktor.http.*
 import io.ktor.server.application.*
+import io.ktor.server.plugins.cors.routing.*
 import io.ktor.server.response.*
 import io.ktor.server.routing.*
 
@@ -13,6 +14,12 @@ fun Application.configureRouting() {
     // Starting point for a Ktor app:
     routing {
         bannerCreation()
+    }
+}
+
+fun Application.installCors() {
+    install(CORS) {
+        allowHeader("Access-Control-Allow-Origin:*")
     }
 }
 
