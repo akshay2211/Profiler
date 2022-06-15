@@ -5,6 +5,7 @@ import io.ak1.svg.generate
 import io.ak1.svg.getHashMap
 import io.ktor.http.*
 import io.ktor.server.application.*
+import io.ktor.server.http.content.*
 import io.ktor.server.plugins.cors.routing.*
 import io.ktor.server.response.*
 import io.ktor.server.routing.*
@@ -13,12 +14,17 @@ import io.ktor.server.routing.*
 fun Application.configureRouting() {
     // Starting point for a Ktor app:
     routing {
+        static("assets") {
+            // files("fonts")
+            resources("fonts")
+        }
         bannerCreation()
     }
 }
 
 fun Application.installCors() {
     install(CORS) {
+        anyHost()
         allowHeader("Access-Control-Allow-Origin:*")
     }
 }
@@ -34,7 +40,17 @@ fun Route.bannerCreation() {
         val url = call.request.queryParameters["url"]
 
         val icons = call.request.getHashMap()
-        call.respondText(generate(title, desc1, desc2, image, url, icons), contentType = ContentType.Image.SVG)
+        val modifiedWidth = try {
+            val width = (call.request.queryParameters["width"] ?: "1200").toInt()
+            if ((800..2000).contains(width)) width else 1200
+        } catch (nfe: NumberFormatException) {
+            print(nfe.message)
+            1200
+        }
+        call.respondText(
+            generate(title, desc1, desc2, image, url, icons, modifiedWidth),
+            contentType = ContentType.Image.SVG
+        )
     }
 }
 
