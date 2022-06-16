@@ -25,7 +25,6 @@ fun Application.configureRouting() {
 fun Application.installCors() {
     install(CORS) {
         anyHost()
-        allowHeader("Access-Control-Allow-Origin:*")
     }
 }
 

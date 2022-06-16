@@ -20,7 +20,7 @@ const val twitter =
 const val fontImport =
     "<style> @font-face {\n" +
             "    font-family: 'Poppins';\n" +
-            "    src: url('assets/Poppins-Thin.ttf') format('truetype');\n" +
+            "    src: url('banner/assets/Poppins-Thin.ttf') format('truetype');\n" +
             "    font-weight: 100;\n" +
             "    font-style: normal;\n" +
             "} " +
