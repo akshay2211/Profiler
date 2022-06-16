@@ -28,7 +28,7 @@ fun iconPresenter(icons: java.util.HashMap<String, String?>): String {
     val size = mainList.size
     val center = 67.0
     val half: Int = size / 2
-    val start = center - (half * 5)
+    val start = center - ((half * 5f) + (if (size % 2 == 0) -2.5 else 2.5))
     return StringBuilder().apply {
         var index = 0
         mainList.forEach {
